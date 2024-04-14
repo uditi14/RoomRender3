@@ -120,26 +120,74 @@ import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {
   ViroARScene,
-  ViroText,
-  ViroTrackingStateConstants,
+  ViroARPlane,
+  ViroNode,
   ViroARSceneNavigator,
   Viro3DObject,
   ViroAmbientLight,
-  Viro360Image,
-  ViroARTrackingTargets,
-  ViroARImageMarker,
 } from '@viro-community/react-viro';
 // import {objects_3D} from './viroRes/resources';
 
 const HelloWorldSceneAR = () => {
+  const [rotation, setRotation] = useState([0,0,0])
+  const [position, setPosition] = useState([0,0,-2])
+  const [scale, setScale] = useState([.5,.5,.5])
+
+  //to move objects on drag
+  const moveObject = (newPosition) => {
+    setPosition(newPosition);
+  }
+
+  const rotateObject = (rotateState, rotateFactor, source) => {
+    if(rotateState===3){
+      let currentRotation = [rotation[0] - rotateFactor, rotation[1] - rotateFactor, rotation[2] - rotateFactor]
+      setRotation(currentRotation)
+    }
+  }
+
+  const scaleObject = (pinchState, scaleFactor, source) => {
+    if(pinchState===3){
+      let currentScale = scale[0]
+      let newScale = currentScale * scaleFactor;
+      let newScaleArray = [newScale,newScale,newScale]
+      setScale(newScaleArray)
+    }
+  }
+  // const onPinch = (scaleFactors, rotationFactor) => {
+  //   const newScale = [myscale[0] * scaleFactors, myscale[1] * scaleFactors, myscale[2] * scaleFactors];
+  //   setScale(newScale);
+  // };
   return (
     <ViroARScene>
-      <ViroText
-        text="HelloWorld"
-        scale={[0.5, 0.5, 0.5]}
-        position={[0, 0, -1]}
-        style={styles.helloWorldTextStyle}
-      />
+        <ViroNode position={[0,0,-1]}>
+          <ViroAmbientLight color="#ffffff" intensity={200} />
+          <Viro3DObject
+            source={require('./assets/coffee_table/CoffeeO.obj')}
+            resources={[
+              require('./assets/coffee_table/coffee-table-037.mtl'),
+              require('./assets/coffee_table/textures/coffee-table-037-ao-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-ao-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-col-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-col-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-gloss-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-height-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-height-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-metalness-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-nrm-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-nrm-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-rfl-specular-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-roughness-metalness-4k.png'),
+              require('./assets/coffee_table/textures/coffee-table-037-specular-specular-4k.png'),
+            ]}
+            scale={scale}
+            position={position}
+            rotation={rotation}
+            type="OBJ"
+            onDrag={moveObject}
+            onRotate={rotateObject}
+            onPinch={scaleObject}
+          />
+        </ViroNode>
     </ViroARScene>
   );
 
@@ -152,26 +200,6 @@ export default () => {
       initialScene={{
         scene: HelloWorldSceneAR,
       }}
-      style={styles.f1}
     />
   );
 };
-
-// ViroARTrackingTargets.createTargets({
-//   pug2D_img: {
-//     source: objects_3D.pug_animated.img,
-//     orientation: 'Up',
-//     physicalWidth: 0.12, // real world width in meters
-//   },
-// });
-
-var styles = StyleSheet.create({
-  f1: {flex: 1},
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-});
