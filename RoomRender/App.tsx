@@ -125,16 +125,26 @@ import {
   ViroARSceneNavigator,
   Viro3DObject,
   ViroAmbientLight,
+  ViroMaterials
 } from '@viro-community/react-viro';
 // import {objects_3D} from './viroRes/resources';
 
 const HelloWorldSceneAR = () => {
+  ViroMaterials.createMaterials({
+    rock:{
+      lightingModel:"Lambert",
+      diffuseTexture: require('./assets/RockingChair/wood.png'),
+      //metalnessTexture:require('./assets/RockingChair/rocking-chair-011-col-metalness-4k.png'),
+      //roughnessTexture:require('./assets/RockingChair/rocking-chair-011-col-specular-4k.png')
+    }
+  })
   const [rotation, setRotation] = useState([0,0,0])
   const [position, setPosition] = useState([0,0,-2])
-  const [scale, setScale] = useState([.5,.5,.5])
+  const [scale, setScale] = useState([1,1,1])
 
   //to move objects on drag
   const moveObject = (newPosition) => {
+    //console.log(newPosition);
     setPosition(newPosition);
   }
 
@@ -153,6 +163,7 @@ const HelloWorldSceneAR = () => {
       setScale(newScaleArray)
     }
   }
+
   // const onPinch = (scaleFactors, rotationFactor) => {
   //   const newScale = [myscale[0] * scaleFactors, myscale[1] * scaleFactors, myscale[2] * scaleFactors];
   //   setScale(newScale);
@@ -162,30 +173,32 @@ const HelloWorldSceneAR = () => {
         <ViroNode position={[0,0,-1]}>
           <ViroAmbientLight color="#ffffff" intensity={200} />
           <Viro3DObject
-            source={require('./assets/coffee_table/CoffeeO.obj')}
+            source={require('./assets/RockingChair/rock.obj')}
             resources={[
-              require('./assets/coffee_table/coffee-table-037.mtl'),
-              require('./assets/coffee_table/textures/coffee-table-037-ao-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-ao-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-col-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-col-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-gloss-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-height-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-height-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-metalness-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-nrm-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-nrm-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-rfl-specular-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-roughness-metalness-4k.png'),
-              require('./assets/coffee_table/textures/coffee-table-037-specular-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011.mtl'),
+              require('./assets/RockingChair/rocking-chair-011-ao-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-ao-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-col-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-col-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-gloss-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-height-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-height-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-metalness-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-nrm-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-nrm-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-rfl-specular-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-roughness-metalness-4k.png'),
+              require('./assets/RockingChair/rocking-chair-011-specular-specular-4k.png')
             ]}
             scale={scale}
             position={position}
             rotation={rotation}
+            materials={["rock"]}
             type="OBJ"
             onDrag={moveObject}
             onRotate={rotateObject}
             onPinch={scaleObject}
+            dragType='FixedToWorld'
           />
         </ViroNode>
     </ViroARScene>
