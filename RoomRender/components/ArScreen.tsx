@@ -24,6 +24,22 @@ interface HelloWorldSceneARProps {
         lightingModel: 'Lambert',
         diffuseTexture: require('../assets/RockingChair/wood.png'),
       },
+      blue_cloth: {
+        lightingModel: 'Lambert',
+        diffuseTexture: require('../assets/Sofa/blue_cloth.JPG'),
+      },
+      brown_leather: {
+        lightingModel:'Lambert',
+        diffuseTexture: require('../assets/SofaChair/brown_leather.JPG'),
+      },
+      bed: {
+        lightingModel:'Lambert',
+        diffuseTexture: require('../assets/Bed/bed.JPG'),
+      },
+      white_laminate: {
+        lightingModel: 'Lambert',
+        diffuseTexture: require('../assets/Wardrobe/white_laminate.JPG'),
+      }
     });
   
     // State hooks for rotation, position, scale
@@ -31,9 +47,19 @@ interface HelloWorldSceneARProps {
     const [position, setPosition] = useState([0, 0, -2]);
     const [scale, setScale] = useState([1, 1, 1]);
   
+    const rotateObject = (rotateState, rotateFactor, source) => {
+      if(rotateState===3){
+        let currentRotation = [rotation[0], rotation[1] - rotateFactor, rotation[2]]
+        console.log("Rotation:",currentRotation)
+        console.log("Scale after rotation: ", scale)
+        setRotation(currentRotation)
+      }
+    }
+
     // Function to move object on drag
     const moveObject = (newPosition: number[]) => {
-      setPosition(newPosition);
+      const updatedPosition = [newPosition[0], newPosition[1], position[2]];
+      setPosition(updatedPosition);
     };
   
     return (
@@ -49,6 +75,7 @@ interface HelloWorldSceneARProps {
             type="OBJ"
             onDrag={moveObject}
             dragType="FixedToWorld"
+            onRotate={rotateObject}
           />
         </ViroNode>
       </ViroARScene>

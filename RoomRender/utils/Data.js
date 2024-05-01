@@ -5,9 +5,9 @@ const AllData = {
       image: {
         uri: 'https://wakefitdev.gumlet.io/img/WSFASCLFLPNEW/WSFASCLN3FVBL/2.jpg?w=1536',
       },
+      ARobjSrc: require('../assets/Sofa/sofa-029.obj'),
+      material: 'blue_cloth',
       title: 'Modern Fabric Sofa',
-      ARobjSrc: require('../assets/RockingChair/rock.obj'),
-      material:"wood",
       description:
         'A sleek and modern fabric sofa with clean lines and comfortable seating.',
       dimensions: {
@@ -21,25 +21,29 @@ const AllData = {
     {
       id: 2,
       image: {
-        uri: 'https://m.media-amazon.com/images/I/61rlijynFfL._SX679_.jpg',
+        uri: 'https://ii1.pepperfry.com/media/catalog/product/n/e/1100x1210/nemesis-solid-wood-rocking-chair-in-reddish-rosewood-finish-nemesis-solid-wood-rocking-chair-in-redd-b94bdd.jpg',
       },
-      title: 'Leather Sectional Sofa',
+      ARobjSrc: require('../assets/RockingChair/rock.obj'),
+      material: 'wood',
+      title: 'Rocking Chair',
       description:
-        'A luxurious leather sectional sofa with adjustable headrests and built-in cup holders.',
+        'Kingston Sheesham Wood Rocking Chair in Scratch Resistant Provincial Teak Finish.',
       dimensions: {
-        width: '185 cm',
-        height: '96 cm',
-        depth: '98.5 cm',
+        width: '112 inches',
+        height: '36 inches',
+        depth: '82 inches',
       },
-      price: 'MRP: Rs.60,299',
-      link: 'https://www.amazon.in/duroflex-Avalon-Twin-Recliner-Console/dp/B0CCYRXXRD/ref=asc_df_B0CCYRXXRD/?tag=googleshopdes-21&linkCode=df0&hvadid=666358784588&hvpos=&hvnetw=g&hvrand=15412632553972379049&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9040245&hvtargid=pla-2196020977149&psc=1&mcid=10089851afb730348e4248c53ce8a4e4',
+      price: 'MRP: Rs.26,904',
+      link: 'https://www.pepperfry.com/product/nemesis-solid-wood-rocking-chair-in-reddish-rosewood-finish-2180117.html',
     },
     {
       id: 3,
       image: {
         uri: 'https://lmsin.net/cdn-cgi/image/h=750,w=750,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/homecentre/1000010248177-1000010248176_01-2100.jpg',
       },
-      title: 'Sofa Chair with Ottoman',
+      ARobjSrc: require('../assets/SofaChair/armchair-025.obj'),
+      material: 'brown_leather',
+      title: 'Sofa Chair',
       description:
         'An elegant and timeless brown leather chair paired with an ottoman.',
       dimensions: {
@@ -132,18 +136,18 @@ const AllData = {
     {
       id: 9,
       image: {
-        uri: 'https://ii1.pepperfry.com/media/catalog/product/t/h/1100x1210/theodore-solid-wood-rocking-chair-in-provincial-teak-finish-by-amberville-theodore-solid-wood-rockin-bnjphs.jpg',
+        uri: 'https://m.media-amazon.com/images/I/61rlijynFfL._SX679_.jpg',
       },
-      title: 'Rocking Chair',
+      title: 'Leather Sectional Sofa',
       description:
-        'Kingston Sheesham Wood Rocking Chair in Scratch Resistant Provincial Teak Finish.',
+        'A luxurious leather sectional sofa with adjustable headrests and built-in cup holders.',
       dimensions: {
-        width: '112 inches',
-        height: '36 inches',
-        depth: '82 inches',
+        width: '185 cm',
+        height: '96 cm',
+        depth: '98.5 cm',
       },
-      price: 'MRP: Rs.29,999',
-      link: 'https://www.pepperfry.com/product/kingston-sheesham-wood-rocking-chair-in-provincial-teak-finish-2044831.html?type=clip&pos=2&total_result=32&fromId=1906&sort=sorting_score%7Cdesc&filter=%7C&cat=1906',
+      price: 'MRP: Rs.60,299',
+      link: 'https://www.amazon.in/duroflex-Avalon-Twin-Recliner-Console/dp/B0CCYRXXRD/ref=asc_df_B0CCYRXXRD/?tag=googleshopdes-21&linkCode=df0&hvadid=666358784588&hvpos=&hvnetw=g&hvrand=15412632553972379049&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9040245&hvtargid=pla-2196020977149&psc=1&mcid=10089851afb730348e4248c53ce8a4e4',
     },
     {
       id: 10,
@@ -168,6 +172,8 @@ const AllData = {
       image: {
         uri: 'https://lmsin.net/cdn-cgi/image/h=750,w=750,q=85,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/homecentre/1000012785237-1000012785237-1306_01-2100.jpg',
       },
+      ARobjSrc: require('../assets/Bed/bed-003.obj'),
+      material: 'bed',
       title: 'Queen bed with Headboard',
       description:
         'A sleek grey coloured Vegas Royal Queen Bed with Headboard and Hydraulic Storage.',
@@ -182,17 +188,19 @@ const AllData = {
     {
       id: 2,
       image: {
-        uri: 'https://ii1.pepperfry.com/media/catalog/product/l/e/1100x1210/leed-solid-wood-king-size-bed-in-brown-colour-leed-solid-wood-king-size-bed-in-brown-colour-wkikwh.jpg',
+        uri: 'https://www.ikea.com/in/en/images/products/platsa-wardrobe-with-4-doors-white-fonnes-white__1052917_pe846526_s5.jpg?f=s',
       },
-      title: 'King Size Wood Bed',
-      description: 'Leed Solid Wood King Size Bed In Dark Oak Finish,By Durian',
+      title: 'White Wardrobe',
+      ARobjSrc: require('../assets/Wardrobe/wardrobe-001.obj'),
+      material: 'white_laminate',
+      description: 'A charming modern 4 door White Plasta wardrobe by IKEA.',
       dimensions: {
-        width: '37 inches',
-        height: '79 inches',
-        depth: '82 inches',
+        width: '63 inches',
+        height: '22 inches',
+        depth: '71 inches',
       },
-      price: 'MRP: Rs.49,600',
-      link: 'https://www.pepperfry.com/product/leed-solid-wood-king-size-bed-in-brown-colour-2158578.html?type=clip_recommendations_block3&utm_source=shared_link&utm_medium=webvip&utm_campaign=copy',
+      price: 'MRP: Rs.21,500',
+      link: 'https://www.ikea.com/in/en/p/platsa-wardrobe-with-4-doors-white-fonnes-white-s59425186/',
     },
     {
       id: 3,
@@ -275,17 +283,17 @@ const AllData = {
     {
       id: 8,
       image: {
-        uri: 'https://www.ikea.com/in/en/images/products/platsa-wardrobe-with-4-doors-white-fonnes-white__1052917_pe846526_s5.jpg?f=s',
+        uri: 'https://ii1.pepperfry.com/media/catalog/product/l/e/1100x1210/leed-solid-wood-king-size-bed-in-brown-colour-leed-solid-wood-king-size-bed-in-brown-colour-wkikwh.jpg',
       },
-      title: '4 door Wardrobe',
-      description: 'A charming modern 4 door White Plasta wardrobe by IKEA.',
+      title: 'King Size Wood Bed',
+      description: 'Leed Solid Wood King Size Bed In Dark Oak Finish,By Durian',
       dimensions: {
-        width: '63 inches',
-        height: '22 inches',
-        depth: '71 inches',
+        width: '37 inches',
+        height: '79 inches',
+        depth: '82 inches',
       },
-      price: 'MRP: Rs.21,500',
-      link: 'https://www.ikea.com/in/en/p/platsa-wardrobe-with-4-doors-white-fonnes-white-s59425186/',
+      price: 'MRP: Rs.49,600',
+      link: 'https://www.pepperfry.com/product/leed-solid-wood-king-size-bed-in-brown-colour-2158578.html?type=clip_recommendations_block3&utm_source=shared_link&utm_medium=webvip&utm_campaign=copy',
     },
     {
       id: 9,
