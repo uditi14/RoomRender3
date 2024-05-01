@@ -11,90 +11,87 @@ import {
 } from '@viro-community/react-viro';
 // import {objects_3D} from './viroRes/resources';
 
-const HelloWorldSceneAR = () => {
-  ViroMaterials.createMaterials({
-    rock:{
-      lightingModel:"Lambert",
-      diffuseTexture: require('../assets/RockingChair/wood.png'),
-      //metalnessTexture:require('./assets/RockingChair/rocking-chair-011-col-metalness-4k.png'),
-      //roughnessTexture:require('./assets/RockingChair/rocking-chair-011-col-specular-4k.png')
-    }
-  })
-  const [rotation, setRotation] = useState([0,0,0])
-  const [position, setPosition] = useState([0,0,-2])
-  const [scale, setScale] = useState([1,1,1])
 
-  //to move objects on drag
-  const moveObject = (newPosition) => {
-    //console.log(newPosition);
-    setPosition(newPosition);
+interface HelloWorldSceneARProps {
+    item: { ARobjSrc: any; material: string }; // Define the type of 'item' prop
   }
 
-  const rotateObject = (rotateState, rotateFactor, source) => {
-    if(rotateState===3){
-      let currentRotation = [rotation[0] - rotateFactor, rotation[1] - rotateFactor, rotation[2] - rotateFactor]
-      setRotation(currentRotation)
-    }
-  }
-
-  const scaleObject = (pinchState, scaleFactor, source) => {
-    if(pinchState===3){
-      let currentScale = scale[0]
-      let newScale = currentScale * scaleFactor;
-      let newScaleArray = [newScale,newScale,newScale]
-      setScale(newScaleArray)
-    }
-  }
-
-  // const onPinch = (scaleFactors, rotationFactor) => {
-  //   const newScale = [myscale[0] * scaleFactors, myscale[1] * scaleFactors, myscale[2] * scaleFactors];
-  //   setScale(newScale);
-  // };
-  return (
-    <ViroARScene>
-        <ViroNode position={[0,0,-1]}>
+  const HelloWorldSceneAR: React.FC<HelloWorldSceneARProps> = ({ item }) => {
+    // Create materials if needed
+    console.log("Obj:", item.ARobjSrc)
+    ViroMaterials.createMaterials({
+      wood: {
+        lightingModel: 'Lambert',
+        diffuseTexture: require('../assets/RockingChair/wood.png'),
+      },
+    });
+  
+    // State hooks for rotation, position, scale
+    const [rotation, setRotation] = useState([0, 0, 0]);
+    const [position, setPosition] = useState([0, 0, -2]);
+    const [scale, setScale] = useState([1, 1, 1]);
+  
+    // Function to move object on drag
+    const moveObject = (newPosition: number[]) => {
+      setPosition(newPosition);
+    };
+  
+    return (
+      <ViroARScene>
+        <ViroNode position={[0, 0, -1]}>
           <ViroAmbientLight color="#ffffff" intensity={200} />
           <Viro3DObject
-            source={require('../assets/RockingChair/rock.obj')}
-            resources={[
-              require('../assets/RockingChair/rocking-chair-011.mtl'),
-              require('../assets/RockingChair/rocking-chair-011-ao-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-ao-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-col-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-col-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-gloss-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-height-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-height-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-metalness-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-nrm-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-nrm-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-rfl-specular-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-roughness-metalness-4k.png'),
-              require('../assets/RockingChair/rocking-chair-011-specular-specular-4k.png')
-            ]}
+            source={item.ARobjSrc}
             scale={scale}
             position={position}
             rotation={rotation}
-            materials={["rock"]}
+            materials={[item.material]} // Use the defined material here
             type="OBJ"
             onDrag={moveObject}
-            //onRotate={rotateObject}
-            //onPinch={scaleObject}
-            dragType='FixedToWorld'
+            dragType="FixedToWorld"
           />
         </ViroNode>
-    </ViroARScene>
-  );
+      </ViroARScene>
+    );
+  };
 
-};
 
-export default () => {
-  return (
-    <ViroARSceneNavigator
-      autofocus={true}
-      initialScene={{
-        scene: HelloWorldSceneAR,
-      }}
-    />
-  );
-};
+  type RootStackParamList = {
+    ProductInfo: { item: Product };
+  };
+
+  interface Product {
+    id: number;
+    title: string;
+    ARobjSrc : any;
+    material : string;
+    description: string;
+    dimensions: {
+      width: number;
+      height: number;
+      depth: number;
+    };
+    price: string;
+    image: any;
+    link: string;
+  }
+
+const ARSceneNavigator: React.FC<{
+  route: { params: { item: Product } };
+  navigation: { navigate: (screen: keyof RootStackParamList, params?: any) => void };
+}
+> = ({ route, navigation }) => {
+  console.log("Route:", route.params.it)
+  const item = route.params.it;
+  console.log("Inside outer ar navigator:", item)
+    return (
+      <ViroARSceneNavigator
+        autofocus={true}
+        initialScene={{
+          scene: () => <HelloWorldSceneAR item={item} />, // Pass 'item' prop to HelloWorldSceneAR
+        }}
+      />
+    );
+  };
+  
+  export default ARSceneNavigator;

@@ -9,6 +9,8 @@ type RootStackParamList = {
 interface Product {
   id: number;
   title: string;
+  ARobjSrc : any;
+  material : string;
   description: string;
   dimensions: {
     width: number;
@@ -25,7 +27,8 @@ const ProductInfo: React.FC<{
   navigation: { navigate: (screen: keyof RootStackParamList, params?: any) => void };
 }> = ({ route, navigation }) => {
   const { item } = route.params;
-
+  const it = item
+  console.log(it)
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -40,7 +43,7 @@ const ProductInfo: React.FC<{
         <Text style={styles.price}>{item.price}</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('ArScreen')}>
+        <Pressable style={styles.button} onPress={() => {console.log(it); navigation.navigate('ArScreen', {it})}}>
           <Text style={styles.buttonText}>View in my room</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => Linking.openURL(item.link)}>

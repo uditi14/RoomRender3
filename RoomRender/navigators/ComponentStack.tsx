@@ -9,7 +9,7 @@ type RootStackParamList = {
   CategoriesPage: undefined;
   Catalog: { category: string };
   ProductInfo: { item: any }; // Adjust the type as per your item type
-  ArScreen : undefined;
+  ArScreen : { item: any };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

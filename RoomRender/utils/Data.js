@@ -6,6 +6,8 @@ const AllData = {
         uri: 'https://wakefitdev.gumlet.io/img/WSFASCLFLPNEW/WSFASCLN3FVBL/2.jpg?w=1536',
       },
       title: 'Modern Fabric Sofa',
+      ARobjSrc: require('../assets/RockingChair/rock.obj'),
+      material:"wood",
       description:
         'A sleek and modern fabric sofa with clean lines and comfortable seating.',
       dimensions: {
