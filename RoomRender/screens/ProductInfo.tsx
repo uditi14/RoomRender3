@@ -40,7 +40,7 @@ const ProductInfo: React.FC<{
         <Text style={styles.price}>{item.price}</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <Pressable style={styles.button} onPress={() => console.log('View in my room')}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('ArScreen')}>
           <Text style={styles.buttonText}>View in my room</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => Linking.openURL(item.link)}>
