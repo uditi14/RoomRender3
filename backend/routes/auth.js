@@ -64,4 +64,47 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/favorites/add", async (req, res) => {
+  const { userId, itemId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if item already exists in favorites
+    if (!user.favorites.includes(itemId)) {
+      user.favorites.push(itemId);
+      await user.save();
+    }
+
+    res.status(200).json({ message: "Item added to favorites" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Remove item from favorites
+router.post("/favorites/remove", async (req, res) => {
+  const { userId, itemId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Remove item from favorites
+    user.favorites = user.favorites.filter((fav) => fav !== itemId);
+    await user.save();
+
+    res.status(200).json({ message: "Item removed from favorites" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 module.exports = router;

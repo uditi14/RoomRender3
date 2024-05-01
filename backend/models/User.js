@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }], // Assuming 'Item' is the model for the items users can favorite
 });
 
 module.exports = mongoose.model("User", userSchema);
